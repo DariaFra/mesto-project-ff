@@ -1,8 +1,7 @@
 import '../pages/index.css';
 import {initialCards} from  '../components/cards.js';
 import {createCard, handleLike, delCard} from '../components/card.js'
-import {openModal, closeModal, closePopup} from '../components/modals.js'
-
+import {openModal, closeModal} from '../components/modals.js'
 
 const cardTemplate = document.querySelector('#card-template');
 const container = document.querySelector('.places__list');
@@ -31,8 +30,8 @@ initialCards.forEach(element => {
  // Функция редактирования информации о себе
 function handleEditSubmit(evt) {
     evt.preventDefault(); 
-    profileTitle.textContent = nameInput.value
-    profileDescription.textContent = jobInput.value
+    profileTitle.textContent = nameInput.value;
+    profileDescription.textContent = jobInput.value;
     closeModal(popupEdit);
 }  
 
@@ -45,19 +44,16 @@ function handleNewPlaceSubmit(evt) {
     }    
     const newCard = createCard(cardTemplate, element, handleLike, openCard, delCard);
     container.prepend(newCard); 
-    cardNameInput.value = '';
-    urlInput.value = '';
+    formNewPlace.reset();
     closeModal(popupNewCard);
 }  
-
 
 // Функция открытия картинки карточки
 function openCard (elLink, elName) {
     openModal(popupModalImage);
     popupCaption.textContent = elName;
     popupImage.src = elLink;
-    popupImage.alt = elName
-    closePopup ();  
+    popupImage.alt = elName;
 }
 
 // открытие модального окна
@@ -65,12 +61,10 @@ buttonEditprofile.addEventListener('click', function(){
     openModal(popupEdit);
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileDescription.textContent;
-    closePopup ();
 })  
 
 buttonAddprofile.addEventListener('click', function(){
     openModal(popupNewCard);
-    closePopup ();
 }) 
 
 formEdit.addEventListener('submit', handleEditSubmit); 
