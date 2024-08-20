@@ -52,7 +52,6 @@ export const addNewCard = (card) => {
 }
 
 export const deleteCard = (cardId) => {
-    console.log(cardId)
     return fetch(`https://nomoreparties.co/v1/wff-cohort-21/cards/${cardId}`, {
         method: 'DELETE',
         headers: config.headers

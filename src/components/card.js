@@ -1,7 +1,7 @@
 // @todo: Функция создания карточки
 
 import { openModal } from "./modals";
-import {putLike, deleteLike } from "./api"
+import { putLike, deleteLike } from "./api"
 
 export function createCard (element, handleLike, deleteMyCard, openCard, userId) {
     const cardTemplate = document.querySelector('#card-template');
