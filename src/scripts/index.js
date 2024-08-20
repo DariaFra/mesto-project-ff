@@ -135,16 +135,6 @@ avatarImage.addEventListener('click', function(){
 handleNewPlaceSubmit(container, createCard, deleteMyCard)
 
 enableValidation(validationConfig)
-fetch('https://nomoreparties.co/v1/wff-cohort-21/cards', {
-    method: 'GET',
-    headers: {
-      authorization: '710148f6-ab5d-49c8-b9e8-391a6f602323'
-    }
-  })
-    .then(res => res.json())
-    .then((result) => {
-      console.log(result);
-    }); 
     
 Promise.all([getInitialCard(), getUserData()])
     .then(([initialCards, userData]) => {

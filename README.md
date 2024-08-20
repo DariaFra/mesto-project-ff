@@ -8,7 +8,7 @@ https://github.com/DariaFra/mesto-project-ff.git
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Project+Mesto)](https://git.io/typing-svg)
 
 ---
-Работа выполнена по макету ![Figma](https:///img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) С помощью ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) Проектная работа была собрана с помощью ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black).
+Работа выполнена по макету ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) С помощью ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) Проектная работа была собрана с помощью ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black).
 
 В данной рабете было выполенно:
 1. Загрузка карточек с сервера с помощью GET-запроса.
