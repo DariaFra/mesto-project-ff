@@ -1,6 +1,6 @@
 
 export const openModal = (popup) => {      
-    popup.classList.add('popup_is-opened', 'popup_is-animated');
+    popup.classList.add('popup_is-opened');
     document.addEventListener('keydown', closeEsc);
     popup.addEventListener('click', closePopupByClick);
 }
@@ -11,7 +11,7 @@ export const closeModal = (popup) => {
     popup.removeEventListener('click', closePopupByClick);
 }
 
-function closeEsc(evt) {
+const closeEsc = evt => {
     if (evt.key === 'Escape') {
         const popupIsOpen = document.querySelector('.popup_is-opened');
         closeModal(popupIsOpen);
