@@ -6,7 +6,7 @@ export const config = {
     }
 };
 
-const response = (res) => {
+const handleResponse = (res) => {
     if(res.ok) {
         return res.json();
     } else {
@@ -19,7 +19,7 @@ export function getInitialCard() {
         method: 'GET',
         headers: config.headers
     })
-    .then(response)
+    .then(handleResponse)
 }
 
 export const getUserData = () => {
@@ -27,7 +27,7 @@ export const getUserData = () => {
         method: 'GET',
         headers: config.headers
     })
-    .then(response)  
+    .then(handleResponse)  
 } 
 
 export const editUser = (data) => {
@@ -36,11 +36,11 @@ export const editUser = (data) => {
         headers: config.headers,
         body: JSON.stringify(data)
     })
-    .then(response)
+    .then(handleResponse)
 }
 
 export const addNewCard = (card) => {
-    return fetch(`https://nomoreparties.co/v1/wff-cohort-21/cards `, {
+    return fetch(`${config.baseUrl}/cards `, {
         method: 'POST',
         headers: config.headers,
         body: JSON.stringify ({
@@ -48,15 +48,15 @@ export const addNewCard = (card) => {
             link: card.link
         })
     })
-    .then(response)
+    .then(handleResponse)
 }
 
 export const deleteCard = (cardId) => {
-    return fetch(`https://nomoreparties.co/v1/wff-cohort-21/cards/${cardId}`, {
+    return fetch(`${config.baseUrl}/cards/${cardId}`, {
         method: 'DELETE',
         headers: config.headers
     }) 
-    .then(response)
+    .then(handleResponse)
 }
 
 export const putLike = (cardId) => {
@@ -66,7 +66,7 @@ export const putLike = (cardId) => {
         headers: config.headers
     }
 )
-    .then(response)
+    .then(handleResponse)
 }
 
 export const deleteLike = (cardId) => {
@@ -80,12 +80,12 @@ export const deleteLike = (cardId) => {
 }
 
 export const updateAvatar = (data) => {
-    return fetch(`https://nomoreparties.co/v1/wff-cohort-21/users/me/avatar`, {
+    return fetch(`${config.baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: config.headers,
         body: JSON.stringify({
             avatar: data
         })
     })
-    .then(response)
+    .then(handleResponse)
 }

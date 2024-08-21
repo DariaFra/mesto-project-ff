@@ -25,6 +25,10 @@
   pointer-events: none;
 }
 
+.popup__button_avatar {
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 568px) {
   .popup__button {
     font-size: 14px;

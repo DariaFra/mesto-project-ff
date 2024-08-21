@@ -1,7 +1,7 @@
 import '../pages/index.css';
 import {createCard, handleLike} from '../components/card.js'
 import {openModal, closeModal} from '../components/modals.js'
-import {enableValidation, clearValidation, validationConfig} from '../components/validation.js'
+import {enableValidation, clearValidation} from '../components/validation.js'
 import { addNewCard, editUser, getInitialCard, getUserData, updateAvatar, deleteCard } from '../components/api.js';
 
 
@@ -26,9 +26,17 @@ const popupCaption = document.querySelector('.popup__caption');
 const avatarImage = document.querySelector('.profile__image');
 const popupAvatar = document.querySelector('.popup_type_avatar');
 const formAvatar = document.forms['avatar-profile'];
-const avatarInput = document.querySelector('.popup__input_type_avatar')
+const avatarInput = document.querySelector('.popup__input_type_avatar');
 //переменные для удаления карточки
 const popupDelete = document.querySelector('.popup__type_delete');
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+}; 
 let userId = '';
 
 // Функция добавления новой карточки
@@ -60,7 +68,7 @@ function handleNewPlaceSubmit(container, createCard) {
 }
 
 // Функция удаления карточки
- export function deleteMyCard(cardId, cardElement) {   
+ export function deleteMyCard(cardId, cardElement, evt) {   
         deleteCard(cardId)
         .then(() => { 
         cardElement.remove()
@@ -68,6 +76,9 @@ function handleNewPlaceSubmit(container, createCard) {
         })
         .catch((err) => {
         console.log(err)
+        })
+        .finally(() => {
+            evt.submitter.textContent = 'Да'
         })
 }
 
@@ -84,9 +95,9 @@ formProfile.addEventListener('submit', function(evt) {
     evt.preventDefault();
     evt.submitter.textContent = 'Сохранение...'
     editUser({name: nameInput.value, about: jobInput.value})
-    .then(() => {
-        profileTitle.textContent = nameInput.value;
-        profileDescription.textContent = jobInput.value;
+    .then((data) => {
+        profileTitle.textContent = data.name;
+        profileDescription.textContent = data.about;
         closeModal(popupEdit);
     })
     .catch((err) => {
@@ -132,9 +143,9 @@ avatarImage.addEventListener('click', function(){
     clearValidation(formAvatar, validationConfig);
 })
 
-handleNewPlaceSubmit(container, createCard, deleteMyCard)
+handleNewPlaceSubmit(container, createCard, deleteMyCard);
 
-enableValidation(validationConfig)
+enableValidation(validationConfig);
     
 Promise.all([getInitialCard(), getUserData()])
     .then(([initialCards, userData]) => {

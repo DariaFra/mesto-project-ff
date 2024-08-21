@@ -22,18 +22,10 @@ export function createCard (element, handleLike, deleteMyCard, openCard, userId)
     }
 
     if(element.owner._id !== userId) {
-        // resetButton.disabled = true;
         deleteButton.classList.add('card__delete-button-hidden');
     } else {
-        deleteButton.addEventListener('click', function() {
-            const popupDelete = document.querySelector('.popup__type_delete');
-            const formDelete = document.forms['delete-card'];
-            formDelete.addEventListener('submit', (evt) => {
-                evt.preventDefault();
-                 deleteMyCard(cardId, cardElement)}, {once: true})
-            openModal(popupDelete);
-            })
-        }
+        deleteButton.addEventListener('click', () => handleDelete(cardId, cardElement, deleteMyCard))
+    }
 
     cardLikeButton.addEventListener('click', function() {
         handleLike(cardLikeButton, cardId, cardLikesCounter);
@@ -46,8 +38,7 @@ export function createCard (element, handleLike, deleteMyCard, openCard, userId)
     return cardElement;
 }
 
-
-// Функция лайка карточки
+// Обработчик лайка карточки
 export function handleLike (cardLikeButton, cardId, cardLikesCounter) {
     const likes = cardLikeButton.classList.contains('card__like-button_is-active') ? deleteLike : putLike;
     likes(cardId)
@@ -58,4 +49,16 @@ export function handleLike (cardLikeButton, cardId, cardLikesCounter) {
     .catch((err) => {
         console.log(err)
     })    
+}
+
+//Обработчик удаления карточки
+function handleDelete (cardId, cardElement, deleteMyCard) {
+    const popupDelete = document.querySelector('.popup__type_delete');
+    const formDelete = document.forms['delete-card'];
+    formDelete.onsubmit = (evt) => {
+        evt.preventDefault();
+        evt.submitter.textContent = 'Удаление...'
+         deleteMyCard(cardId, cardElement, evt)
+        }
+    openModal(popupDelete);   
 }
